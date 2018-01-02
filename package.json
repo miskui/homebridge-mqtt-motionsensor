@@ -1,5 +1,5 @@
 {
-  "name": "homebridge-mqtt-motionsensor",
+  "name": "homebridge-mqtt-sonoffrf-motionsensor",
   "version": "0.1.0",
   "description": "A HomeBridge plugin for MQTT motion sensors.",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/heisice/homebridge-mqtt-motionsensor.git"
+    "url": "git+https://github.com/miskui/homebridge-mqtt-sonoffrf-motionsensor.git"
   },
   "files": [
     "index.js",
@@ -25,9 +25,9 @@
   "author": "Ki-soo Kim <heisice@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/heisice/homebridge-mqtt-motionsensor/issues"
+    "url": "https://github.com/heisice/homebridge-mqtt-sonoffrf-motionsensor/issues"
   },
-  "homepage": "https://github.com/heisice/homebridge-mqtt-motionsensor",
+  "homepage": "https://github.com/miskui/homebridge-mqtt-sonoffrf-motionsensor",
   "dependencies": {
     "mqtt": "^1.12.0"
   },
