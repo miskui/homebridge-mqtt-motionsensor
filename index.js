@@ -50,7 +50,8 @@ function MotionSensorAccessory(log, config) {
 		data = JSON.parse(message);
 		if (data === null) return null;
 		var rfreceiveddata = data.RfReceived.Data;
-		if (self.rfcode === rfreceiveddata || self.rfcode === 'any') {
+		var rfreceivedrfkey = data.RfReceived.RfKey;
+		if (self.rfcode == rfreceiveddata || self.rfcode == 'any' || self.rfkey == rfreceivedrfkey || self.rfkey == 'any') {
 			self.value = Boolean('true');
 			self.service.getCharacteristic(Characteristic.MotionDetected).setValue(self.value);
 		}
