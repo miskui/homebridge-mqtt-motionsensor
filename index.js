@@ -4,7 +4,7 @@ var mqtt    = require('mqtt');
 module.exports = function(homebridge) {
 	Service = homebridge.hap.Service;
 	Characteristic = homebridge.hap.Characteristic;
-	homebridge.registerAccessory("homebridge-mqtt-motionsensor", "mqtt-motionsensor", MotionSensorAccessory);
+	homebridge.registerAccessory("homebridge-mqtt-sonoffrf-motionsensor", "mqtt-sonoffrf-motionsensor", MotionSensorAccessory);
 }
 
 function MotionSensorAccessory(log, config) {
@@ -15,6 +15,8 @@ function MotionSensorAccessory(log, config) {
 	this.url = config['url'];
 	this.topic = config['topic'];
 	this.sn = config['sn'] || 'Unknown';
+	this.rfcode = config['rfcode'] || 'undefined';
+	this.rfkey = config['rfkey'] || 'undefined';
 
 	this.client_Id 		= 'mqttjs_' + Math.random().toString(16).substr(2, 8);
 
@@ -47,7 +49,12 @@ function MotionSensorAccessory(log, config) {
 	this.client.on('message', function (topic, message) {
 		data = JSON.parse(message);
 		if (data === null) return null;
-		self.value = Boolean(parseInt(data,10));
+		var rfreceiveddata = data.RfReceived.Data;
+		if (self.rfcode === rfreceiveddata || self.rfcode === 'any') {
+			self.value = Boolean('true');
+			self.service.getCharacteristic(Characteristic.MotionDetected).setValue(self.value);
+		}
+		self.value = Boolean(0);
 		self.service.getCharacteristic(Characteristic.MotionDetected).setValue(self.value);
 	});
 
