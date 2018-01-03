@@ -23,7 +23,7 @@
     "homebridge": ">=0.2.0"
   },
   "author": "Istvan Misku <istvan.misku@gmail.com>",
-  "license": "",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/miskui/homebridge-mqtt-sonoffrf-receiver/issues"
   },
