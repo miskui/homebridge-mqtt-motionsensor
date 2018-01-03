@@ -1,5 +1,5 @@
 {
-  "name": "homebridge-mqtt-sonoffrf-motionsensor",
+  "name": "homebridge-mqtt-sonoffrf-receiver",
   "version": "0.1.0",
   "description": "A HomeBridge plugin for MQTT motion sensors.",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/miskui/homebridge-mqtt-sonoffrf-motionsensor.git"
+    "url": "git+https://github.com/miskui/homebridge-mqtt-sonoffrf-receiver.git"
   },
   "files": [
     "index.js",
@@ -22,12 +22,12 @@
     "node": ">=0.12.0",
     "homebridge": ">=0.2.0"
   },
-  "author": "Ki-soo Kim <heisice@gmail.com>",
-  "license": "MIT",
+  "author": "Istvan Misku <istvan.misku@gmail.com>",
+  "license": "",
   "bugs": {
-    "url": "https://github.com/heisice/homebridge-mqtt-sonoffrf-motionsensor/issues"
+    "url": "https://github.com/miskui/homebridge-mqtt-sonoffrf-receiver/issues"
   },
-  "homepage": "https://github.com/miskui/homebridge-mqtt-sonoffrf-motionsensor",
+  "homepage": "https://github.com/miskui/homebridge-mqtt-sonoffrf-receiver",
   "dependencies": {
     "mqtt": "^1.12.0"
   },
