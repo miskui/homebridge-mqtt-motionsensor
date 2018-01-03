@@ -4,10 +4,10 @@ var mqtt    = require('mqtt');
 module.exports = function(homebridge) {
 	Service = homebridge.hap.Service;
 	Characteristic = homebridge.hap.Characteristic;
-	homebridge.registerAccessory("homebridge-mqtt-sonoffrf-motionsensor", "mqtt-sonoffrf-motionsensor", MotionSensorAccessory);
+	homebridge.registerAccessory("homebridge-mqtt-sonoffrf-receiver", "mqtt-sonoffrf-receiver", RfSensorAccessory);
 }
 
-function MotionSensorAccessory(log, config) {
+function RfSensorAccessory(log, config) {
 
 	this.log = log;
 
@@ -61,12 +61,12 @@ function MotionSensorAccessory(log, config) {
 
 }
 
-MotionSensorAccessory.prototype.getState = function(callback) {
+RfSensorAccessory.prototype.getState = function(callback) {
 		this.log(this.name, " - MQTT : ", this.value);
 		callback(null, this.value);
 }
 
-MotionSensorAccessory.prototype.getServices = function() {
+RfSensorAccessory.prototype.getServices = function() {
 
 	var informationService = new Service.AccessoryInformation();
 
