@@ -72,8 +72,8 @@ RfSensorAccessory.prototype.getServices = function() {
 
 	informationService
 		.setCharacteristic(Characteristic.Name, this.name)
-		.setCharacteristic(Characteristic.Manufacturer, "heisice")
-		.setCharacteristic(Characteristic.Model, "Motion Sensor")
+		.setCharacteristic(Characteristic.Manufacturer, "Sonoff")
+		.setCharacteristic(Characteristic.Model, "RF Bridge 433")
 		.setCharacteristic(Characteristic.SerialNumber, this.sn);
 
 	return [informationService, this.service];
