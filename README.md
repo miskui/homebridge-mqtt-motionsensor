@@ -1,7 +1,7 @@
 # homebridge-mqtt-sonoffrf-receiver
 
 Get Motion Sensor status via MQTT in Homebridge.
-Sensor becomes active if received RF code matches for rfcode or RF key stored in Sonoff RF.
+Sensor becomes active if received RF code matches for rfcode or RF key stored in Sonoff RF device.
 
 Installation
 --------------------
@@ -28,8 +28,8 @@ Sample HomeBridge Configuration
           "topic": "tele/sonoff_rf/RESULT",
           "username": "username",
           "password": "password",
-          "rfcode": "code hex",
-          "rfkey": "1..16"
+          "rfcode": "code hex or 'any'",
+          "rfkey": "1..16 or 'any'"
         }
       ],
 
