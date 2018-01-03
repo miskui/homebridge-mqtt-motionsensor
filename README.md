@@ -1,11 +1,11 @@
-# homebridge-mqtt-sonoffrf-motionsensor
+# homebridge-mqtt-sonoffrf-receiver
 
 Get Motion Sensor status via MQTT in Homebridge.
 Sensor becomes active if received RF code matches for rfcode or RF key stored in Sonoff RF.
 
 Installation
 --------------------
-    sudo npm install -g homebridge-mqtt-sonoffrf-motionsensor
+    sudo npm install -g homebridge-mqtt-sonoffrf-receiver
 
 
 Sample HomeBridge Configuration
@@ -22,7 +22,7 @@ Sample HomeBridge Configuration
 
       "accessories": [
         {
-          "accessory": "mqtt-sonoffrf-motionsensor",
+          "accessory": "mqtt-sonoffrf-receiver",
           "name": "Living Room",
           "url": "mqtt://localhost",
           "topic": "tele/sonoff_rf/RESULT",
