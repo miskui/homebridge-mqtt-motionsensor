@@ -43,6 +43,7 @@ function RfSensorAccessory(log, config) {
 	this.client  = mqtt.connect(this.url, this.options);
 
 	var self = this;
+	var timeout;
 
 	this.client.subscribe(this.topic);
  
@@ -52,11 +53,12 @@ function RfSensorAccessory(log, config) {
 		var rfreceiveddata = data.RfReceived.Data;
 		var rfreceivedrfkey = data.RfReceived.RfKey;
 		if (self.rfcode == rfreceiveddata || self.rfcode == 'any' || self.rfkey == rfreceivedrfkey || self.rfkey == 'any') {
+			clearTimeout(timeout);
 			self.value = Boolean('true');
 			self.service.getCharacteristic(Characteristic.MotionDetected).setValue(self.value);
 		}
 		self.value = Boolean(0);
-		setTimeout(function() {
+		timeout = setTimeout(function() {
 		self.service.getCharacteristic(Characteristic.MotionDetected).setValue(self.value);
 		}.bind(self), 10000);
 	});
