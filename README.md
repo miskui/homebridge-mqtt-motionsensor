@@ -36,4 +36,5 @@ Sample HomeBridge Configuration
       "platforms": []
     }
 
-
+# References
+Use [homebridge-mqtt-sonoffrf-transmitter](https://github.com/miskui/homebridge-mqtt-sonoffrf-transmitter) to control RF devices in Homebridge.
