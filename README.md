@@ -36,5 +36,4 @@ Sample HomeBridge Configuration
       "platforms": []
     }
 
-Contributions Welcome!
---------------------
+
