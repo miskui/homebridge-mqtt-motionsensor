@@ -17,6 +17,8 @@ function RfSensorAccessory(log, config) {
 	this.sn = config['sn'] || 'Unknown';
 	this.rfcode = config['rfcode'] || 'undefined';
 	this.rfkey = config['rfkey'] || 'undefined';
+	this.ondelay = config['ondelay'] || 10000;
+	this.accessoryservicetype = config['accessoryservicetype'] || 'MotionSensor';
 
 	this.client_Id 		= 'mqttjs_' + Math.random().toString(16).substr(2, 8);
 
@@ -39,7 +41,16 @@ function RfSensorAccessory(log, config) {
 		rejectUnauthorized: false
 	};
 
-	this.service = new Service.MotionSensor();
+	switch (this.accessoryservicetype) {
+	case 'MotionSensor':
+		this.service = new Service.MotionSensor();
+		break;
+	case 'StatelessProgrammableSwitch':
+		this.service = new Service.StatelessProgrammableSwitch();
+		this.service.getCharacteristic(Characteristic.ProgrammableSwitchEvent).setProps({ maxValue: 0 });
+		break;
+	}
+
 	this.client  = mqtt.connect(this.url, this.options);
 
 	var self = this;
@@ -52,15 +63,25 @@ function RfSensorAccessory(log, config) {
 		if (data === null) return null;
 		var rfreceiveddata = data.RfReceived.Data;
 		var rfreceivedrfkey = data.RfReceived.RfKey;
-		if (self.rfcode == rfreceiveddata || self.rfcode == 'any' || self.rfkey == rfreceivedrfkey || self.rfkey == 'any') {
-			clearTimeout(timeout);
-			self.value = Boolean('true');
+		var sensoractive = Boolean(self.rfcode == rfreceiveddata || self.rfcode == 'any' || self.rfkey == rfreceivedrfkey || self.rfkey == 'any');
+		switch (self.accessoryservicetype) {
+		case 'MotionSensor':
+			if (sensoractive) {
+				clearTimeout(timeout);
+				self.value = Boolean('true');
+				self.service.getCharacteristic(Characteristic.MotionDetected).setValue(self.value);
+			}
+			self.value = Boolean(0);
+			timeout = setTimeout(function() {
 			self.service.getCharacteristic(Characteristic.MotionDetected).setValue(self.value);
+			}.bind(self), self.ondelay);
+			break;
+		case 'StatelessProgrammableSwitch':
+			if (sensoractive) {
+				self.service.getCharacteristic(Characteristic.ProgrammableSwitchEvent).setValue(0);
+			}
+			break;
 		}
-		self.value = Boolean(0);
-		timeout = setTimeout(function() {
-		self.service.getCharacteristic(Characteristic.MotionDetected).setValue(self.value);
-		}.bind(self), 10000);
 	});
 
 }
