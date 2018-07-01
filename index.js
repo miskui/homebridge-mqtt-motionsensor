@@ -16,6 +16,8 @@ function RfSensorAccessory(log, config) {
 	this.topic = config['topic'];
 	this.sn = config['sn'] || 'Unknown';
 	this.rfcode = config['rfcode'] || 'undefined';
+	this.rfcodeon = config['rfcodeon'] || 'undefined';
+	this.rfcodeoff = config['rfcodeoff'] || 'undefined';
 	this.rfkey = config['rfkey'] || 'undefined';
 	this.ondelay = config['ondelay'] || 10000;
 	this.accessoryservicetype = config['accessoryservicetype'] || 'MotionSensor';
@@ -81,6 +83,16 @@ function RfSensorAccessory(log, config) {
 				self.service.getCharacteristic(Characteristic.ProgrammableSwitchEvent).setValue(0);
 			}
 			break;
+		}
+		var sensoron = Boolean(self.rfcodeon == rfreceiveddata);
+		if (sensoron) {
+			self.value = Boolean('true');
+			self.service.getCharacteristic(Characteristic.MotionDetected).setValue(self.value);
+		}
+		var sensoroff = Boolean(self.rfcodeoff == rfreceiveddata);
+		if (sensoroff) {
+			self.value = Boolean(0);
+			self.service.getCharacteristic(Characteristic.MotionDetected).setValue(self.value);
 		}
 	});
 
