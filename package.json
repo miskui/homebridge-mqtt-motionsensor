@@ -1,6 +1,6 @@
 {
   "name": "homebridge-mqtt-sonoffrf-receiver",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A HomeBridge plugin for MQTT motion sensors.",
   "main": "index.js",
   "scripts": {

@@ -65,7 +65,7 @@ function RfSensorAccessory(log, config) {
 		if (data === null) return null;
 		var rfreceiveddata = data.RfReceived.Data;
 		var rfreceivedrfkey = data.RfReceived.RfKey;
-		if (self.rfcode != 'undefined' || self.rfcode != 'undefined') {
+		if (self.rfcode != 'undefined' || self.rfkey != 'undefined') {
 			var sensoractive = Boolean(self.rfcode == rfreceiveddata || self.rfcode == 'any' || self.rfkey == rfreceivedrfkey || self.rfkey == 'any');
 			switch (self.accessoryservicetype) {
 			case 'MotionSensor':
