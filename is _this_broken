@@ -1,0 +1,22 @@
+This doesnot appear to work ?
+
+
+   {
+      "accessory": "mqtt-sonoffrf-receiver",
+      "name": "Garden",
+      "url": "mqtt://192.168.0.14",
+      "topic": "tele/rfbridge/RESULT",
+      "username": "",
+      "password": "",
+      "rfcode": "EBDFEE",
+      "rfkey": "any",
+      "ondelay": "",
+      "rfcodeon": "",
+      "rfcodeoff": "",
+      "accessoryservicetype": "MotionSensor"
+    },
+    
+    
+
+{"Time":"2019-11-10T18:40:01","RfReceived":{"Sync":12520,"Low":470,"High":1210,"Data":"EBDFEE","RfKey":"None"}}
+
